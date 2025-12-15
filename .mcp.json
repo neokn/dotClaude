@@ -1,0 +1,28 @@
+{
+  "$schema": "https://code.claude.com/schemas/mcp.json",
+  "mcpServers": {
+    "_example-http-server": {
+      "_comment": "HTTP server example (recommended for remote services)",
+      "type": "http",
+      "url": "https://api.example.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${API_KEY}"
+      }
+    },
+    "_example-stdio-server": {
+      "_comment": "Local stdio server example",
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@example/mcp-server"],
+      "env": {
+        "API_KEY": "${API_KEY:-}"
+      }
+    },
+    "filesystem": {
+      "_comment": "Example: MCP filesystem server for additional directories",
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@anthropics/mcp-filesystem", "/path/to/allowed/directory"]
+    }
+  }
+}

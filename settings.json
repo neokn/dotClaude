@@ -1,0 +1,68 @@
+{
+  "$schema": "https://code.claude.com/schemas/settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(git:*)",
+      "Bash(npm:*)",
+      "Bash(pnpm:*)",
+      "Bash(yarn:*)",
+      "Bash(npx:*)",
+      "Bash(node:*)",
+      "Read",
+      "Write",
+      "Edit",
+      "Glob",
+      "Grep"
+    ],
+    "ask": [
+      "Bash(rm:*)",
+      "Bash(mv:*)",
+      "Bash(git push:*)",
+      "Bash(git checkout:*)"
+    ],
+    "deny": [
+      "Read(.env)",
+      "Read(.env.*)",
+      "Read(**/secrets/**)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)"
+    ],
+    "additionalDirectories": [],
+    "defaultMode": "acceptEdits"
+  },
+  "env": {},
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/pre-commit-check.sh",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/validate-file-size.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [],
+    "UserPromptSubmit": [],
+    "Stop": [],
+    "SessionStart": [],
+    "SessionEnd": []
+  },
+  "model": "claude-sonnet-4-20250514",
+  "attribution": {
+    "commit": "\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+    "pr": "\n\n🤖 Generated with [Claude Code](https://claude.ai/code)"
+  }
+}

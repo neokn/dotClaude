@@ -1,0 +1,5 @@
+# Personal settings (should not be shared)
+settings.local.json
+
+# Local plugin state files
+*.local.md
